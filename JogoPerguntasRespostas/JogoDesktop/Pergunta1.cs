@@ -16,5 +16,14 @@ namespace JogoDesktop
         {
             InitializeComponent();
         }
+
+        private void Bproxina_Click(object sender, EventArgs e)
+        {
+            if (RB4.Checked == true)
+                MessageBox.Show("Errou", "É o contrario");
+            else
+                MessageBox.Show("Errou");
+
+        }
     }
 }
