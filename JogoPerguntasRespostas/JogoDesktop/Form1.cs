@@ -50,20 +50,21 @@ namespace JogoDesktop
                 //using System.Data.SqlClient;
                 using (SqlConnection conexao = new SqlConnection("Server=AME0556321W10-1\\SQLEXPRESS;Database=PER;Trusted_Connection=Yes"))
                 {
-                    using(SqlCommand comando = new SqlCommand("insert into Jogador(nome) values(@NOME)",conexao))
+                    using(SqlCommand comando = new SqlCommand("insert into Jogador(nome) OUTPUT INSERTED.ID values(@NOME)",conexao))
                     {
                         comando.Parameters.AddWithValue("NOME", txtNome.Text);
                         conexao.Open();
 
                         if(comando.ExecuteNonQuery() == 1)
                         {
-                            MessageBox.Show("Olá " + txtNome.Text.ToUpper() + ". Você está pronto para continuar!!!", "PLAYYYY", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            int id_jogador = (int) comando.ExecuteScalar();
+                            MessageBox.Show("Olá " + txtNome.Text.ToUpper() + " Seu id é: "+ id_jogador + ". Você está pronto para continuar!!!", "PLAYYYY", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                             System.Media.SoundPlayer player = new System.Media.SoundPlayer();
                             player.SoundLocation = "C:\\Users\\andre.sacilotto\\Downloads\\som.wav";
                             player.Play();
 
-                            Pergunta1 P1 = new Pergunta1();
+                            Pergunta1 P1 = new Pergunta1(id_jogador);
                             P1.ShowDialog();
                         }
                         else

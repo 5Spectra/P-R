@@ -7,23 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace JogoDesktop
 {
     public partial class Pergunta1 : Form
     {
-        public Pergunta1()
+        public int id_jogador_banco;
+
+        public Pergunta1(int id_jogador)
         {
             InitializeComponent();
+            id_jogador_banco = id_jogador;
         }
 
         private void Bproxina_Click(object sender, EventArgs e)
         {
-            if (RB4.Checked == true)
-                MessageBox.Show("Errou", "É o contrario");
-            else
-                MessageBox.Show("Errou");
+            using (SqlConnection conexao = new SqlConnection("Server=AME0556321W10-1\\SQLEXPRESS;Database=PER;Trusted_Connection=Yes"))
+            {
+                using (SqlCommand comando = new SqlCommand("insert into TBPerguntas(pergunta,resposta_C,id_jogador) values(@PER,@RES,@ID)", conexao))
+                {
+                    comando.Parameters.AddWithValue("PER", lbl.Text);
+                    comando.Parameters.AddWithValue("RES", RB4.Text);
+                    comando.Parameters.AddWithValue("ID", id_jogador_banco);
+                    conexao.Open();
+                    comando.ExecuteNonQuery();
+                    if (RB4.Checked == true)
+                        MessageBox.Show("Errou", "É o contrario");
+                    else
+                        MessageBox.Show("Errou");
 
+                }
+            }
         }
     }
 }
