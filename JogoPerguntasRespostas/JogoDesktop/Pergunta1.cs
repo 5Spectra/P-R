@@ -31,14 +31,19 @@ namespace JogoDesktop
                     comando.Parameters.AddWithValue("RES", RB4.Text);
                     comando.Parameters.AddWithValue("ID", id_jogador_banco);
                     conexao.Open();
-                    comando.ExecuteNonQuery();
-                    if (RB4.Checked == true)
-                        MessageBox.Show("Errou", "É o contrario");
-                    else
-                        MessageBox.Show("Errou");
+                    if (comando.ExecuteNonQuery() == 1)
+                         if (RB4.Checked == true)
+                        {
+                            MessageBox.Show("Acertou", "Parabens");
+                        }
+                        else { MessageBox.Show("Errou", "Feio"); }
+
+                    Pergunta2 P2 = new Pergunta2(id_jogador_banco);
+                    P2.ShowDialog();
+                    this.Close();
+                }
 
                 }
             }
         }
     }
-}
