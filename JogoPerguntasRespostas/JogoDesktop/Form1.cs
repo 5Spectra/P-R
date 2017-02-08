@@ -55,9 +55,11 @@ namespace JogoDesktop
                         comando.Parameters.AddWithValue("NOME", txtNome.Text);
                         conexao.Open();
 
-                        if(comando.ExecuteNonQuery() == 1)
+                        int id_jogador = (int)comando.ExecuteScalar();
+                        // if(comando.ExecuteNonQuery() == 1)
+                        if (id_jogador > 0)
                         {
-                            int id_jogador = (int) comando.ExecuteScalar();
+
                             MessageBox.Show("Olá " + txtNome.Text.ToUpper() + " Seu id é: "+ id_jogador + ". Você está pronto para continuar!!!", "PLAYYYY", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                             System.Media.SoundPlayer player = new System.Media.SoundPlayer();
@@ -65,7 +67,9 @@ namespace JogoDesktop
                             player.Play();
 
                             Pergunta1 P1 = new Pergunta1(id_jogador);
-                            P1.ShowDialog();
+                            Pergunta2 P2 = new Pergunta2(id_jogador);
+                            Pergunta3 P3 = new Pergunta3(id_jogador);
+                            P1.ShowDialog(); P2.ShowDialog(); P3.ShowDialog();
                         }
                         else
                         {

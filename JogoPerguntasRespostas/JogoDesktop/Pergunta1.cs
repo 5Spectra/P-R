@@ -38,8 +38,8 @@ namespace JogoDesktop
                         }
                         else { MessageBox.Show("Errou", "Feio"); }
 
-                    Pergunta2 P2 = new Pergunta2(id_jogador_banco);
-                    P2.ShowDialog();
+                    //Pergunta2 P2 = new Pergunta2(id_jogador_banco);
+                    //P2.ShowDialog();
                     this.Close();
                 }
 

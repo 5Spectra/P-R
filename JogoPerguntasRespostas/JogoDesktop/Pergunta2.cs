@@ -22,6 +22,7 @@ namespace JogoDesktop
 
         private void Bproxima_Click(object sender, EventArgs e)
         {
+            
             using (SqlConnection conexao = new SqlConnection("Server=AME0556321W10-1\\SQLEXPRESS;Database=PER;Trusted_Connection=Yes"))
             {
                 using (SqlCommand comando = new SqlCommand("insert into TBPerguntas(pergunta,resposta_C,id_jogador) values(@PER,@RES,@ID)", conexao))
@@ -34,8 +35,8 @@ namespace JogoDesktop
                     if (RB4.Checked == true) { MessageBox.Show("Acertou", "UAUA"); }
                     else { MessageBox.Show("Errou"); }
 
-                    Pergunta3 P2 = new Pergunta3(id_jogador_banco);
-                    P2.ShowDialog();
+                    //Pergunta3 P2 = new Pergunta3(id_jogador_banco);
+                    //P2.ShowDialog();
                     this.Close();
                 }
             }
