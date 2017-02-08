@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace JogoDesktop
 {
-    public partial class Pergunta3 : Form
+    public partial class Pergunta4 : Form
     {
         public int id_jogador_banco;
-        public Pergunta3(int id_jogador)
+        public Pergunta4(int id_jogador)
         {
             InitializeComponent();
             id_jogador_banco = id_jogador;
@@ -31,7 +31,7 @@ namespace JogoDesktop
                     comando.Parameters.AddWithValue("ID", id_jogador_banco);
                     conexao.Open();
                     comando.ExecuteNonQuery();
-                    if (RB4.Checked == true)  { MessageBox.Show("Acertou", " AEEEEEEEEEE"); }
+                    if (RB4.Checked == true) { MessageBox.Show("Acertou", " AEEEEEEEEEE"); }
                     else { MessageBox.Show("Errou"); }
 
                     this.Close();
