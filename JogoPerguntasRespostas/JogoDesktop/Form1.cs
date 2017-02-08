@@ -50,7 +50,7 @@ namespace JogoDesktop
                 //using System.Data.SqlClient;
                 using (SqlConnection conexao = new SqlConnection("Server=AME0556321W10-1\\SQLEXPRESS;Database=PER;Trusted_Connection=Yes"))
                 {
-                    using(SqlCommand comando = new SqlCommand("insert into Jogador(nome) OUTPUT INSERTED.ID values(@NOME)",conexao))
+                    using (SqlCommand comando = new SqlCommand("insert into Jogador(nome) OUTPUT INSERTED.ID values(@NOME)", conexao))
                     {
                         comando.Parameters.AddWithValue("NOME", txtNome.Text);
                         conexao.Open();
@@ -60,7 +60,7 @@ namespace JogoDesktop
                         if (id_jogador > 0)
                         {
 
-                            MessageBox.Show("Olá " + txtNome.Text.ToUpper() + " Seu id é: "+ id_jogador + ". Você está pronto para continuar!!!", "PLAYYYY", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("Olá " + txtNome.Text.ToUpper() + " Seu id é: " + id_jogador + ". Você está pronto para continuar!!!", "PLAYYYY", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                             System.Media.SoundPlayer player = new System.Media.SoundPlayer();
                             player.SoundLocation = "C:\\Users\\andre.sacilotto\\Downloads\\som.wav";
@@ -72,11 +72,15 @@ namespace JogoDesktop
 
                             P1.ShowDialog(); P2.ShowDialog(); P3.ShowDialog(); P4.ShowDialog();
 
-                        }
-                        else
+                        } else { MessageBox.Show("DEU RUIMMMM!!!! Algo aconteceu durante o insert"); 
+
+                        using (SqlCommand comando_placar = new SqlCommand("select COUNT(pergunta) from TBPerguntas where id = 38", conexao))
                         {
-                            MessageBox.Show("DEU RUIMMMM!!!! Algo aconteceu durante o insert");
+
+                                comando_placar.ExecuteReader();
                         }
+
+
                     }
                 }
                 //fim do código para inserir o jogador na tabela
