@@ -26,7 +26,7 @@ namespace JogoDesktop
         private void txtNome_Leave(object sender, EventArgs e)
         {
 
-            if(txtNome.Text == "")
+            if (txtNome.Text == "")
             {
                 txtNome.Text = "Digite seu nome";
             }
@@ -35,7 +35,7 @@ namespace JogoDesktop
 
         private void frmInicial_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -44,11 +44,13 @@ namespace JogoDesktop
             {
                 MessageBox.Show("Você deve informar seu nome", "ATENÇÃO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtNome.Focus();
-            }else{
+            }
+            else
+            {
 
                 //início do código para inserir o jogador na tabela
                 //using System.Data.SqlClient;
-                using (SqlConnection conexao = new SqlConnection("Server=AME0556321W10-1\\SQLEXPRESS;Database=PER;Trusted_Connection=Yes"))
+                using (SqlConnection conexao = new SqlConnection("Server=AME0524167W10-1\\SQLEXPRESS;Database=PER;Trusted_Connection=Yes"))
                 {
                     using (SqlCommand comando = new SqlCommand("insert into Jogador(nome) OUTPUT INSERTED.ID values(@NOME)", conexao))
                     {
@@ -62,9 +64,9 @@ namespace JogoDesktop
 
                             MessageBox.Show("Olá " + txtNome.Text.ToUpper() + " Seu id é: " + id_jogador + ". Você está pronto para continuar!!!", "PLAYYYY", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-                            player.SoundLocation = "C:\\Users\\andre.sacilotto\\Downloads\\som.wav";
-                            player.Play();
+                            /* System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+                             player.SoundLocation = "C:\\Users\\andre.sacilotto\\Downloads\\som.wav";
+                             player.Play();*/
 
 
                             Pergunta1 P1 = new Pergunta1(id_jogador); Pergunta2 P2 = new Pergunta2(id_jogador);
@@ -72,19 +74,35 @@ namespace JogoDesktop
 
                             P1.ShowDialog(); P2.ShowDialog(); P3.ShowDialog(); P4.ShowDialog();
 
-                        } else { MessageBox.Show("DEU RUIMMMM!!!! Algo aconteceu durante o insert"); 
+                            comando.CommandText = "select COUNT(pergunta) from TBPerguntas where id_jogador = @Nun";
 
-                        using (SqlCommand comando_placar = new SqlCommand("select COUNT(pergunta) from TBPerguntas where id = 38", conexao))
+                            comando.Parameters.AddWithValue("Nun", id_jogador);
+                            SqlDataReader acertos = comando.ExecuteReader();
+                            acertos.Read();
+                            MessageBox.Show("Sua pontuação é: " + acertos.GetInt32(0));
+                            acertos.Close();
+
+                        }
+                        else
                         {
-
-                                comando_placar.ExecuteReader();
+                            MessageBox.Show("DEU RUIMMMM!!!! Algo aconteceu durante o insert");
                         }
 
 
+                        }
                     }
+                    //fim do código para inserir o jogador na tabela
                 }
-                //fim do código para inserir o jogador na tabela
             }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Saair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
-}
+    }

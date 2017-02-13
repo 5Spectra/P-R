@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicial));
             this.txtNome = new System.Windows.Forms.TextBox();
             this.btnPlay = new System.Windows.Forms.Button();
+            this.Saair = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtNome
@@ -60,6 +61,16 @@
             this.btnPlay.UseVisualStyleBackColor = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
+            // Saair
+            // 
+            this.Saair.Location = new System.Drawing.Point(440, 383);
+            this.Saair.Name = "Saair";
+            this.Saair.Size = new System.Drawing.Size(75, 23);
+            this.Saair.TabIndex = 2;
+            this.Saair.Text = "Exit";
+            this.Saair.UseVisualStyleBackColor = true;
+            this.Saair.Click += new System.EventHandler(this.Saair_Click);
+            // 
             // frmInicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -67,6 +78,7 @@
             this.BackColor = System.Drawing.Color.Khaki;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(527, 418);
+            this.Controls.Add(this.Saair);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.btnPlay);
             this.MaximizeBox = false;
@@ -84,6 +96,7 @@
 
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.Button Saair;
     }
 }
 

@@ -23,7 +23,7 @@ namespace JogoDesktop
         private void Bproxima_Click(object sender, EventArgs e)
         {
             
-            using (SqlConnection conexao = new SqlConnection("Server=AME0556321W10-1\\SQLEXPRESS;Database=PER;Trusted_Connection=Yes"))
+            using (SqlConnection conexao = new SqlConnection("Server=AME0524167W10-1\\SQLEXPRESS;Database=PER;Trusted_Connection=Yes"))
             {
                 using (SqlCommand comando = new SqlCommand("insert into TBPerguntas(pergunta,resposta_C,id_jogador) values(@PER,@RES,@ID)", conexao))
                 {
